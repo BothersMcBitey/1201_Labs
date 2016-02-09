@@ -13,7 +13,7 @@ public class Timing {
 			boolean found = false;
 			double time = System.nanoTime();
 //			while(j < i && !found){				
-				Colouring col = graph.bestColouring(i);				
+				Colouring col = graph.bestColouring(3);				
 				if(col.cost() == 0 ){
 					minCol = Math.min(minCol, col.no_colours());
 					found = true;

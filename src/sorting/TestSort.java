@@ -6,7 +6,7 @@ import java.nio.file.Paths;
 
 public class TestSort {
 
-	static String path = "C:\\Users\\Carrum\\Documents\\";//"/home/crea1g15/TestData/";
+	static String path = "H:\\Documents\\";//"C:\\Users\\Carrum\\Documents\\";//"/home/crea1g15/TestData/";
 	
 	public static void main(String[] args) {
 		PrintStream inOut = System.out;
@@ -43,7 +43,7 @@ public class TestSort {
 			}
 		}
 		
-		for(int j = 10; j < 1000000; j *= 5){
+		for(int j = 10; j < 1000000; j *= 2){
 			int N = j;
 			double[] data = new double[N];
 			for (int i = 0; i < N; i++)
@@ -55,7 +55,7 @@ public class TestSort {
 			long time_prev = 0;
 			double time = 0;
 			
-			for(int k = 0; k < 40; k++){
+			for(int k = 0; k < 100; k++){
 				 time_prev = System.nanoTime();
 				InsertionSort(data1);
 				time = (System.nanoTime() - time_prev) / 1000000000.0;
