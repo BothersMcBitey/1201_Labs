@@ -4,14 +4,14 @@ import java.util.NoSuchElementException;
 
 public class CircularArrayQueue implements MyQueue {
 	
-	private int head = 0; //add to head, points to first element
-	private int tail = 0; //take from tail, points to space after last element
+	private int head = 0; //add to head, points to next free space
+	private int tail = 0; //take from tail, points to last element added
 	private int space;
 	private int[] queue;
 	
 	public CircularArrayQueue(int initialSize) {
 		queue =  initialSize == 0 ? new int[10] : new int[initialSize];
-		space = initialSize;
+		space = initialSize == 0? 10 : initialSize;
 	}
 
 	@Override
@@ -34,21 +34,23 @@ public class CircularArrayQueue implements MyQueue {
 				}
 				head = 0;
 				tail = j;
+				space = temp.length - queue.length;
 			}
 			queue = temp;			
 		}
 		queue[tail]= in;
-		tail = tail == (queue.length - 1) ? 0 : tail++;
-		space = queue.length - 1;
+		tail = tail == (queue.length - 1) ? 0 : tail + 1;
+		space--;
 	}
 
 	@Override
 	public int dequeue() throws NoSuchElementException {
 		if(isEmpty()) {
-			
+			throw new NoSuchElementException();
 		}
 		int x = queue[head];
-		head = head == queue.length -1 ? 0 : head++;
+		head = (head == queue.length - 1) ? 0 : head + 1;
+		space++;
 		return x;
 	}
 
@@ -64,10 +66,14 @@ public class CircularArrayQueue implements MyQueue {
 			}
 		}
 	}
+	
+	public int getCapacityLeft(){
+		return space;
+	}
 
 	@Override
 	public boolean isEmpty() {
-		return head == tail;
+		return head == tail && space != 0;
 	}
 
 }
