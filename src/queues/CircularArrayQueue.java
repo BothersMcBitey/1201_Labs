@@ -11,7 +11,7 @@ public class CircularArrayQueue implements MyQueue {
 	
 	public CircularArrayQueue(int initialSize) {
 		queue =  initialSize == 0 ? new int[10] : new int[initialSize];
-		space = initialSize == 0? 10 : initialSize;
+		space = queue.length;
 	}
 
 	@Override
