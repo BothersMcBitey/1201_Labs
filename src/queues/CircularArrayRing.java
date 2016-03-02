@@ -47,7 +47,7 @@ public class CircularArrayRing<E> extends AbstractCollection<E> implements Ring<
 			public E next() throws NoSuchElementException{
 				if(!hasNext()) throw new NoSuchElementException();
 				E ret;
-				int i = (head-1 - itCount > 0) ? head-1 - itCount : array.length + (head-1 - itCount);
+				int i = (head-1 - itCount >= 0) ? head-1 - itCount : array.length + (head-1 - itCount);
 				ret = (E)array[i];
 				itCount++;
 				return ret;
